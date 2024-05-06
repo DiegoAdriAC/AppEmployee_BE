@@ -8,6 +8,7 @@ namespace WebApplication1.Controllers
     [Route("api/[controller]")]
     public class MainController : ControllerBase
     {
+
         private readonly AppDBContext _dbContext;
 
         public MainController(AppDBContext dBContext)
