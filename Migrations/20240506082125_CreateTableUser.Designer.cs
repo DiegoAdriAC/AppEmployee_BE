@@ -12,8 +12,8 @@ using WebApplication1;
 namespace AppEmployee.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240506044909_Initial")]
-    partial class Initial
+    [Migration("20240506082125_CreateTableUser")]
+    partial class CreateTableUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,19 @@ namespace AppEmployee.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AppEmployee.Models.User", b =>
+                {
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Pasword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserName");
+
+                    b.ToTable("User");
+                });
 
             modelBuilder.Entity("WebApplication1.Models.Employee", b =>
                 {

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1;
 
@@ -12,6 +13,14 @@ builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(buil
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors((setup) =>
+{
+    setup.AddPolicy("default", (options) =>
+    {
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,9 +30,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("default");
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

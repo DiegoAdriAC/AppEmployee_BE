@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1;
 
@@ -11,9 +12,10 @@ using WebApplication1;
 namespace AppEmployee.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240506063232_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,19 +23,6 @@ namespace AppEmployee.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("AppEmployee.Models.User", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Pasword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserName");
-
-                    b.ToTable("User");
-                });
 
             modelBuilder.Entity("WebApplication1.Models.Employee", b =>
                 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AppEmployee.Models;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 
 namespace WebApplication1
@@ -10,5 +11,7 @@ namespace WebApplication1
         }
 
         public DbSet<Employee> Employee { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }
