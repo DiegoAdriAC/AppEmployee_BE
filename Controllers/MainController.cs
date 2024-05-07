@@ -240,13 +240,8 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("UpdateEmployee")]
-        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] Employee employee)
+        public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
-            if (id != employee.IdEmployee)
-            {
-                return BadRequest("Employee ID mismatch");
-            }
-
             try
             {
                 if (EmployeeExists(employee.IdEmployee))
